@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	
+	<head>
+	  <meta charset="utf-8" />
+	  <title>Contacts Database</title>
+	  <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+	</head>
+	
+	<body>
+	  <div align="center" class="m-5 pb-5">
+	    <h1>Contact List</h1>
+	    <br />
+	    <a href="/new" class="btn btn-primary">Add Contact</a>
+	    <br /><br />
+	
+	    <form th:action="@{/contacts}">
+	
+	      <div class="input-group mb-3">
+	        <input type="text" class="form-control" placeholder="Search Contacts" aria-label="Search Contacts" aria-describedby="basic-addon2" name="searchString" id="searchString" th:value="${searchString}" />
+	        <div class="input-group-append">
+	          <input type="submit" value="Search" class="btn btn-primary" />
+	        </div>
+	      </div>
+	
+	      <input type="button" value="Clear" id="btnClear" onclick="clearSearch()" class="btn btn-primary" />
+	      &nbsp;
+	      <input type="submit" value="Find All" class="btn btn-primary" />
+	    </form>
+	
+	    <br />
+	    <table class="table table-striped text-center">
+	      <thead>
+	        <tr>
+	          <th>TelephoneNumber</th>
+	          <th>FirstName</th>
+	          <th>LastName</th>
+	          <th>Address</th>
+	          <th>City</th>
+	          <th>Postcode</th>
+	          <th>Actions</th>
+	        </tr>
+	      </thead>
+	      <tbody>
+	        <tr th:each="contact : ${listContacts}">
+	          <td th:text="${contact.telephoneNumber}">TelephoneNumber</td>
+	          <td th:text="${contact.firstName}">FirstName</td>
+	          <td th:text="${contact.lastName}">LastName</td>
+	          <td th:text="${contact.Address}">Address</td>
+	          <td th:text="${contact.City}">City</td>
+	          <td th:text="${contact.Postcode}">Postcode</td>
+	          <td>
+	            <a th:href="@{'/edit/' + ${contact.telephoneNumber}}" class="btn btn-warning">Edit</a>
+	            &nbsp;&nbsp;&nbsp;&nbsp;
+	            <a th:href="@{'/delete/' + ${contact.telephoneNumber}}" class="btn btn-danger">Delete</a>
+	          </td>
+	        </tr>
+	      </tbody>
+	    </table>
+	  </div>
+	
+	  <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+	  <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+	  <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	
+	  <script type="text/javascript">
+	    function clearSearch() {
+	      window.location = "[[@{/}]]";
+	    }
+	  </script>
+	</body>
+
+</html>

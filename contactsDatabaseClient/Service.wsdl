@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<definitions name="ContactsDefinitions"
+ targetNamespace="urn:Contacts"
+ xmlns="http://schemas.xmlsoap.org/wsdl/"
+ xmlns:contacts="urn:Contacts"
+ xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+ xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+ 
+ <types>
+ 	<schema elementFormDefault="qualified" 
+ 	targetNamespace="urn:Contacts"
+	xmlns="http://www.w3.org/2001/XMLSchema">
+	
+	<complexType name="contactDetail">
+		<sequence>
+			<element name="lastname" type="xsd:string"/>
+			<element name="firstname" type="xsd:string"/>
+			<element name="street" type="xsd:string"/>
+			<element name="city" type="xsd:string"/>
+			<element name="postcode" type="xsd:string"/>
+			<element name="telephoneNumber" type="xsd:int"/>
+		</sequence>
+	</complexType>
+	
+	<complexType name="contactDetails">
+		<sequence>
+			<element name="contactlist" type="contacts:contactDetail" maxOccurs="unbounded" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	
+
+	 <element name="number" type="xsd:int"/>
+	 <element name="name" type="xsd:string"/>
+	 <element name="contact" type="contacts:contactDetail"/>
+	 <element name="contactGroup" type="contacts:contactDetails"/>
+	 <element name="error" type="xsd:string"/>
+	 
+	 </schema>
+ </types>
+ 
+ <message name="nameRequest">
+ 	<part name="request" element="contacts:name"/>
+ </message>
+ 
+ <message name="nameResponse">
+ 	<part name="response" element="contacts:contactGroup"/>
+ </message>
+ 
+  <message name="numberRequest">
+ 	<part name="request" element="contacts:number"/>
+ </message>
+ 
+ <message name="numberResponse">
+ 	<part name="response" element="contacts:contactGroup"/>
+ </message>
+ 
+ <message name="errorFault">
+	<part name="errorMessage" element="contacts:error"/>
+ </message>
+ 
+ <portType name="contactPort">
+ 	<operation name="getName">
+ 		<input message="contacts:nameRequest"/>
+		<output message="contacts:nameResponse"/>
+		<fault name="error" message="contacts:errorFault"/>
+	</operation>
+
+	<operation name="getNumber">
+		<input message="contacts:numberRequest"/>
+		<output message="contacts:numberResponse"/>
+		<fault name="error" message="contacts:errorFault"/>
+	</operation>
+</portType>
+
+<binding name="contactBinding" type="contacts:contactPort">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+    <operation name="getName">
+      	<soap:operation soapAction=""/>
+        <input>
+			<soap:body use="literal" namespace="urn:Contacts" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+        </input>
+        
+        <output>
+			<soap:body use="literal" namespace="urn:Contacts" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+        </output>
+        
+        <fault name="error">
+    		<soap:body use="literal" namespace="urn:Contacts" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+        </fault>
+    </operation>
+
+    <operation name="getNumber">
+      	<soap:operation soapAction=""/>
+        <input>
+			<soap:body use="literal" namespace="urn:Contacts" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+        </input>
+        
+        <output>
+			<soap:body use="literal" namespace="urn:Contacts" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+        </output>
+        
+        <fault name="error">
+    		<soap:body use="literal" namespace="urn:Contacts" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+        </fault>
+    </operation>
+ </binding>
+ 
+  <service name="ContactsService">
+  	<port name="ContactsLoan" binding="contacts:contactBinding">
+			<soap:address location="http://127.0.0.1:8080/axis2/services/ContactsService"/>
+		</port>
+	</service>
+</definitions>
+ 
+ 
+ 
+ 
+	

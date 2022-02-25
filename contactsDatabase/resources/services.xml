@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This file was auto-generated from WSDL -->
+<!-- by the Apache Axis2 version: 1.7.9  Built on : Nov 16, 2018 (12:05:37 GMT) -->
+<serviceGroup>
+    <service name="ContactsService">
+        <messageReceivers>
+            <messageReceiver mep="http://www.w3.org/ns/wsdl/in-out" class="contacts.ContactsServiceMessageReceiverInOut"/>
+        </messageReceivers>
+        <parameter name="ServiceClass">contacts.ContactsServiceSkeleton</parameter>
+        <parameter name="useOriginalwsdl">true</parameter>
+        <parameter name="modifyUserWSDLPortAddress">true</parameter>
+        <operation name="getName" mep="http://www.w3.org/ns/wsdl/in-out" namespace="urn:Contacts">
+            <actionMapping>urn:Contacts:contactPort:getNameRequest</actionMapping>
+            <outputActionMapping>urn:Contacts:contactPort:getNameResponse</outputActionMapping>
+            <faultActionMapping faultName="error">urn:Contacts:contactPort:getName:Fault:error</faultActionMapping>
+            <faultActionMapping faultName="ErrorFault">urn:Contacts:contactPort:getName:Fault:error</faultActionMapping>
+            <faultActionMapping faultName="ErrorFault_Exception">urn:Contacts:contactPort:getName:Fault:error</faultActionMapping>
+            <faultActionMapping faultName="errorFault">urn:getNameerrorFault</faultActionMapping>
+        </operation>
+        <operation name="getNumber" mep="http://www.w3.org/ns/wsdl/in-out" namespace="urn:Contacts">
+            <actionMapping>urn:Contacts:contactPort:getNumberRequest</actionMapping>
+            <outputActionMapping>urn:Contacts:contactPort:getNumberResponse</outputActionMapping>
+            <faultActionMapping faultName="error">urn:Contacts:contactPort:getNumber:Fault:error</faultActionMapping>
+            <faultActionMapping faultName="ErrorFault">urn:Contacts:contactPort:getNumber:Fault:error</faultActionMapping>
+            <faultActionMapping faultName="ErrorFault_Exception">urn:Contacts:contactPort:getNumber:Fault:error</faultActionMapping>
+            <faultActionMapping faultName="errorFault">urn:getNumbererrorFault</faultActionMapping>
+        </operation>
+    </service>
+</serviceGroup>
